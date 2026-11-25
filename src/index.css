@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 18% 12%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 18% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 152 70% 45%;
+    --primary-foreground: 220 20% 8%;
+
+    --secondary: 200 80% 50%;
+    --secondary-foreground: 220 20% 8%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 45 90% 55%;
+    --accent-foreground: 220 20% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 152 70% 45%;
+
+    --radius: 1rem;
+
+    /* Custom energy colors */
+    --energy-green: 152 70% 45%;
+    --energy-blue: 200 80% 50%;
+    --energy-amber: 45 90% 55%;
+    --energy-glow: 152 70% 45%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(152 70% 45%), hsl(180 60% 40%));
+    --gradient-secondary: linear-gradient(135deg, hsl(200 80% 50%), hsl(220 70% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(220 18% 14%), hsl(220 18% 10%));
+    --gradient-glow: radial-gradient(circle, hsl(152 70% 45% / 0.2) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-glow-green: 0 0 30px hsl(152 70% 45% / 0.3);
+    --shadow-glow-blue: 0 0 30px hsl(200 80% 50% / 0.3);
+    --shadow-card: 0 10px 40px hsl(220 20% 4% / 0.5);
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 152 70% 45%;
+    --sidebar-primary-foreground: 220 20% 8%;
+    --sidebar-accent: 220 15% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 152 70% 45%;
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .energy-card {
+    @apply relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 transition-all duration-300;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .energy-card:hover {
+    @apply border-primary/50;
+    box-shadow: var(--shadow-glow-green);
+  }
+
+  .energy-card-active {
+    @apply border-primary;
+    box-shadow: var(--shadow-glow-green);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .glow-icon {
+    filter: drop-shadow(0 0 10px hsl(var(--primary) / 0.5));
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  .slide-in {
+    animation: slide-in 0.4s ease-out forwards;
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .scale-in {
+    animation: scale-in 0.3s ease-out forwards;
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .status-on {
+    @apply bg-primary text-primary-foreground;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .status-off {
+    @apply bg-muted text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-secondary {
+    background-image: var(--gradient-secondary);
+  }
+}
